@@ -41,61 +41,73 @@
                                 <rect key="frame" x="0.0" y="86" width="375" height="581"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="227" id="ngY-UA-jCj">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="227"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackCell" rowHeight="113" id="ngY-UA-jCj" customClass="TrackTableViewCell" customModule="iTunes_Previews" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ngY-UA-jCj" id="hKG-KB-bF5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="226.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="112.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Chc-uu-IoT">
-                                                    <rect key="frame" x="15" y="11" width="90" height="90"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Chc-uu-IoT">
+                                                    <rect key="frame" x="10" y="10" width="90" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="90" id="Z61-WQ-U6u"/>
+                                                        <constraint firstAttribute="height" constant="90" id="ch4-lE-YhL"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIk-GT-yj4">
-                                                    <rect key="frame" x="15" y="108" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIk-GT-yj4">
+                                                    <rect key="frame" x="113" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRD-Bf-hAL">
-                                                    <rect key="frame" x="15" y="137" width="43" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRD-Bf-hAL">
+                                                    <rect key="frame" x="113" y="32" width="43" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yx8-xi-jsd">
-                                                    <rect key="frame" x="15" y="166" width="49" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbo-PZ-UPx">
-                                                    <rect key="frame" x="15" y="195" width="47" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2K-rg-hGQ" customClass="PlayerButton" customModule="iTunes_Previews" customModuleProvider="target">
-                                                    <rect key="frame" x="300" y="11" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2K-rg-hGQ" customClass="PlayerButton" customModule="iTunes_Previews" customModuleProvider="target">
+                                                    <rect key="frame" x="300" y="31.5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="gju-qG-Whu"/>
+                                                        <constraint firstAttribute="width" constant="50" id="vk2-Th-yO3"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="color">
                                                             <color key="value" red="0.73699238580000004" green="0.1043131663" blue="0.0074042843870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isPauseButton" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="playButtonTapped:" destination="ngY-UA-jCj" eventType="touchUpInside" id="AIW-bg-JBH"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Explicit" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-j7-DeQ">
-                                                    <rect key="frame" x="211" y="137" width="15" height="15"/>
+                                                    <rect key="frame" x="156" y="35" width="15" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="F2K-rg-hGQ" secondAttribute="trailing" constant="10" id="5do-dF-yg0"/>
+                                                <constraint firstItem="Chc-uu-IoT" firstAttribute="top" secondItem="hKG-KB-bF5" secondAttribute="top" constant="10" id="7te-mr-sJq"/>
+                                                <constraint firstItem="TRD-Bf-hAL" firstAttribute="leading" secondItem="UIk-GT-yj4" secondAttribute="leading" id="D3e-op-erI"/>
+                                                <constraint firstItem="Chc-uu-IoT" firstAttribute="leading" secondItem="hKG-KB-bF5" secondAttribute="leading" constant="10" id="HlZ-S8-bnN"/>
+                                                <constraint firstItem="TRD-Bf-hAL" firstAttribute="trailing" secondItem="UIk-GT-yj4" secondAttribute="trailing" id="OVM-A8-3Nu"/>
+                                                <constraint firstItem="UIk-GT-yj4" firstAttribute="leading" secondItem="Chc-uu-IoT" secondAttribute="trailing" constant="15" id="cDb-CZ-oIv"/>
+                                                <constraint firstItem="TRD-Bf-hAL" firstAttribute="top" secondItem="UIk-GT-yj4" secondAttribute="bottom" constant="10" id="cgR-et-JkP"/>
+                                                <constraint firstItem="F2K-rg-hGQ" firstAttribute="leading" secondItem="UIk-GT-yj4" secondAttribute="trailing" constant="15" id="d87-dz-aho"/>
+                                                <constraint firstItem="F2K-rg-hGQ" firstAttribute="centerY" secondItem="hKG-KB-bF5" secondAttribute="centerY" id="j6L-TK-yxK"/>
+                                                <constraint firstItem="UIk-GT-yj4" firstAttribute="top" secondItem="Chc-uu-IoT" secondAttribute="top" id="pgY-Mf-Y2f"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="artistNameLabel" destination="UIk-GT-yj4" id="Fzt-DQ-bxv"/>
+                                            <outlet property="artworkImageView" destination="Chc-uu-IoT" id="QsO-xf-b3H"/>
+                                            <outlet property="explicitImageView" destination="oMi-j7-DeQ" id="lfF-m1-9cw"/>
+                                            <outlet property="playButton" destination="F2K-rg-hGQ" id="Kfm-qT-LFY"/>
+                                            <outlet property="trackNameLabel" destination="TRD-Bf-hAL" id="1Sl-Gf-WbL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -112,6 +124,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="tracksTableView" destination="Cwk-3B-p3F" id="UaO-Fq-1Ws"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
