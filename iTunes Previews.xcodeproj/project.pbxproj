@@ -15,6 +15,7 @@
 		52CC5AA721FDEBB40066622B /* PlayerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC5AA621FDEBB40066622B /* PlayerButton.swift */; };
 		52CC5AA921FE01100066622B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC5AA821FE01100066622B /* Track.swift */; };
 		52CC5AAB21FE078A0066622B /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC5AAA21FE078A0066622B /* TrackTableViewCell.swift */; };
+		52CC5AAD21FE24440066622B /* TrackListDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC5AAC21FE24440066622B /* TrackListDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		52CC5AA621FDEBB40066622B /* PlayerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerButton.swift; sourceTree = "<group>"; };
 		52CC5AA821FE01100066622B /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		52CC5AAA21FE078A0066622B /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
+		52CC5AAC21FE24440066622B /* TrackListDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				52CC5A9221FDE0330066622B /* AppDelegate.swift */,
 				52CC5A9421FDE0330066622B /* ViewController.swift */,
+				52CC5AAC21FE24440066622B /* TrackListDownloader.swift */,
 				52CC5A9621FDE0330066622B /* Main.storyboard */,
 				52CC5AAA21FE078A0066622B /* TrackTableViewCell.swift */,
 				52CC5AA821FE01100066622B /* Track.swift */,
@@ -146,6 +149,7 @@
 			files = (
 				52CC5AAB21FE078A0066622B /* TrackTableViewCell.swift in Sources */,
 				52CC5AA721FDEBB40066622B /* PlayerButton.swift in Sources */,
+				52CC5AAD21FE24440066622B /* TrackListDownloader.swift in Sources */,
 				52CC5A9521FDE0330066622B /* ViewController.swift in Sources */,
 				52CC5A9321FDE0330066622B /* AppDelegate.swift in Sources */,
 				52CC5AA921FE01100066622B /* Track.swift in Sources */,

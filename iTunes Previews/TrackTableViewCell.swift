@@ -9,7 +9,6 @@
 import UIKit
 
 class TrackTableViewCell: UITableViewCell {
-
     @IBOutlet var artworkImageView: UIImageView!
     @IBOutlet var explicitImageView: UIImageView!
     @IBOutlet weak var artistNameLabel: UILabel!
@@ -58,5 +57,4 @@ class TrackTableViewCell: UITableViewCell {
         }
         dataTask.resume()
     }
-    
 }

@@ -9,7 +9,6 @@
 import Foundation
 
 class Track: NSObject {
-    
     var artistName: String
     var trackName: String
     var isExplicit: Bool
@@ -25,5 +24,4 @@ class Track: NSObject {
         self.viewURL = viewURL
         self.previewURL = previewURL
     }
-    
 }

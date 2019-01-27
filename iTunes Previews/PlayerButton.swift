@@ -10,7 +10,6 @@ import UIKit
 
 @IBDesignable
 class PlayerButton: UIButton {
-
     @IBInspectable var color: UIColor = UIColor.red
     @IBInspectable var isPauseButton: Bool = false {
         didSet {
@@ -67,5 +66,4 @@ class PlayerButton: UIButton {
             trianglePath.stroke()
         }
     }
-
 }
