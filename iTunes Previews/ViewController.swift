@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     @IBOutlet var tracksTableView: UITableView!
@@ -14,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     let trackListDownloader = TrackListDownloader()
     var tracks = [Track]()
+    let audioPlayer = AudioPlayer()
+    var currentPlayerButton: PlayerButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,34 @@ class ViewController: UIViewController {
             trackListDownloader.downloadListOfTracks()
         }
     }
+    
+    @IBAction func playerButtonTapped(_ sender: PlayerButton) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: tracksTableView)
+        guard let indexPath = tracksTableView.indexPathForRow(at: buttonPosition) else { return }
+        guard let audioURL = tracks[indexPath.row].previewURL else { return }
+        if currentPlayerButton != sender {
+            if let player = audioPlayer.player {
+                if player.isPlaying {
+                    audioPlayer.stop()
+                }
+            }
+            if currentPlayerButton != nil {
+                currentPlayerButton!.isPauseButton = false
+            }
+            sender.isPauseButton = true
+            currentPlayerButton = sender
+            audioPlayer.startPlaying(audioURL: audioURL, delegate: self)
+        } else {
+            sender.isPauseButton = !sender.isPauseButton
+            if let player = audioPlayer.player {
+                if player.isPlaying {
+                    audioPlayer.pause()
+                } else {
+                    audioPlayer.continuePlaying()
+                }
+            }
+        }
+    }
 }
 
 //TrackListDownloader protocol
@@ -42,6 +73,15 @@ extension ViewController: TrackListDownloaderDelegate {
         self.tracks = sender.tracks
         DispatchQueue.main.async {
             self.tracksTableView.reloadData()
+        }
+    }
+}
+
+//AVAudioPlayer protocol
+extension ViewController: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if let currentPlayerButton = currentPlayerButton {
+            currentPlayerButton.isPauseButton = !currentPlayerButton.isPauseButton
         }
     }
 }
