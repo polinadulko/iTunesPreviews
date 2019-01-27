@@ -11,14 +11,28 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var tracksTableView: UITableView!
     let tracksTableViewCellHeight: CGFloat = 110
-    let downloader = TrackListDownloader()
+    @IBOutlet weak var searchTextField: UITextField!
+    let trackListDownloader = TrackListDownloader()
     var tracks = [Track]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tracksTableView.dataSource = self
         tracksTableView.delegate = self
-        downloader.delegate = self
+        trackListDownloader.delegate = self
+        let tapOnViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(finishSearchTextFieldEditing))
+        self.view.addGestureRecognizer(tapOnViewGestureRecognizer)
+    }
+    
+    @objc func finishSearchTextFieldEditing() {
+        searchTextField.endEditing(true)
+    }
+    
+    @IBAction func search(_ sender: UITextField) {
+        if let keywordForSearch = sender.text {
+            trackListDownloader.keyword = keywordForSearch
+            trackListDownloader.downloadListOfTracks()
+        }
     }
 }
 

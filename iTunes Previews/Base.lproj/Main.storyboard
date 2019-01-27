@@ -26,6 +26,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="search:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="OeY-m1-Rg3"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.73699238580000004" green="0.1043131663" blue="0.0074042843870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -125,6 +128,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="searchTextField" destination="w4Z-gE-bp5" id="tov-JE-ijz"/>
                         <outlet property="tracksTableView" destination="Cwk-3B-p3F" id="UaO-Fq-1Ws"/>
                     </connections>
                 </viewController>

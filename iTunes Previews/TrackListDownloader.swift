@@ -19,7 +19,7 @@ class TrackListDownloader {
     
     func downloadListOfTracks() {
         tracks.removeAll()
-        guard let url = URL(string: "https://itunes.apple.com/search?term=" + keyword + "&media=music&limit=20") else { return }
+        guard let url = URL(string: "https://itunes.apple.com/search?term=" + keyword + "&media=music") else { return }
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
