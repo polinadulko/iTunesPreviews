@@ -30,12 +30,25 @@
                                             <action selector="search:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="OeY-m1-Rg3"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNT-hZ-RKC">
+                                        <rect key="frame" x="330" y="23" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="jNG-hA-Oc9"/>
+                                            <constraint firstAttribute="height" constant="20" id="kJf-ig-Y3e"/>
+                                        </constraints>
+                                        <state key="normal" image="Cross"/>
+                                        <connections>
+                                            <action selector="clearSearchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hhp-U9-qkD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.73699238580000004" green="0.1043131663" blue="0.0074042843870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="w4Z-gE-bp5" firstAttribute="top" secondItem="0gU-UD-9kj" secondAttribute="top" constant="18" id="6m0-Cc-oye"/>
+                                    <constraint firstItem="xNT-hZ-RKC" firstAttribute="centerY" secondItem="w4Z-gE-bp5" secondAttribute="centerY" id="Lwv-cP-9o1"/>
                                     <constraint firstAttribute="bottom" secondItem="w4Z-gE-bp5" secondAttribute="bottom" constant="18" id="MCK-L7-Z8S"/>
                                     <constraint firstAttribute="height" constant="66" id="fuf-33-fZA"/>
+                                    <constraint firstAttribute="trailing" secondItem="xNT-hZ-RKC" secondAttribute="trailing" constant="25" id="iCv-Gk-OAG"/>
                                     <constraint firstAttribute="trailing" secondItem="w4Z-gE-bp5" secondAttribute="trailing" constant="15" id="rpm-W6-Gbl"/>
                                     <constraint firstItem="w4Z-gE-bp5" firstAttribute="leading" secondItem="0gU-UD-9kj" secondAttribute="leading" constant="15" id="zbV-7f-YwD"/>
                                 </constraints>
@@ -122,6 +135,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="clearSearchButton" destination="xNT-hZ-RKC" id="73E-53-Ahl"/>
                         <outlet property="searchTextField" destination="w4Z-gE-bp5" id="tov-JE-ijz"/>
                         <outlet property="tracksTableView" destination="Cwk-3B-p3F" id="UaO-Fq-1Ws"/>
                     </connections>
@@ -131,4 +145,7 @@
             <point key="canvasLocation" x="296.80000000000001" y="0.44977511244377816"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Cross" width="40" height="40"/>
+    </resources>
 </document>

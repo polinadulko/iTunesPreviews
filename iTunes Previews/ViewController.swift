@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 
 class ViewController: UIViewController {
     @IBOutlet var tracksTableView: UITableView!
@@ -17,6 +18,7 @@ class ViewController: UIViewController {
     var tracks = [Track]()
     let audioPlayer = AudioPlayer()
     var currentPlayerButton: PlayerButton?
+    @IBOutlet weak var clearSearchButton: UIButton!
     let networkReachabilityManager = NetworkReachabilityManager()
     
     override func viewDidLoad() {
@@ -26,6 +28,8 @@ class ViewController: UIViewController {
         tracksTableView.showsVerticalScrollIndicator = false
         tracksTableView.tableFooterView = UIView(frame: .zero)
         trackListDownloader.delegate = self
+        searchTextField.delegate = self
+        clearSearchButton.isHidden = true
         let tapOnViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(finishSearchTextFieldEditing))
         self.view.addGestureRecognizer(tapOnViewGestureRecognizer)
     }
@@ -35,13 +39,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func search(_ sender: UITextField) {
-        //Checking of Internet connection
-        if networkReachabilityManager.isNetworkReachable() {
+        guard let networkReachabilityManager = networkReachabilityManager else { return }
+        if networkReachabilityManager.isReachable {
             if let keywordForSearch = sender.text {
                 trackListDownloader.keyword = keywordForSearch
                 trackListDownloader.downloadListOfTracks()
             }
         }
+    }
+    
+    @IBAction func clearSearchButtonTapped(_ sender: UIButton) {
+        searchTextField.text = ""
     }
     
     @IBAction func playerButtonTapped(_ sender: PlayerButton) {
@@ -58,7 +66,8 @@ class ViewController: UIViewController {
             if currentPlayerButton != nil {
                 currentPlayerButton!.isPauseButton = false
             }
-            if networkReachabilityManager.isNetworkReachable() {
+            guard let networkReachabilityManager = networkReachabilityManager else { return }
+            if networkReachabilityManager.isReachable {
                 sender.isPauseButton = true
                 currentPlayerButton = sender
                 audioPlayer.startPlaying(audioURL: audioURL, delegate: self)
@@ -161,5 +170,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         stopPlayingForNonvisibleCells()
+    }
+}
+
+//TextField protocol
+extension ViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        clearSearchButton.isHidden = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        clearSearchButton.isHidden = true
     }
 }
