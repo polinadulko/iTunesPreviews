@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tracksTableView.dataSource = self
         tracksTableView.delegate = self
+        tracksTableView.showsVerticalScrollIndicator = false
+        tracksTableView.tableFooterView = UIView(frame: .zero)
         trackListDownloader.delegate = self
         let tapOnViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(finishSearchTextFieldEditing))
         self.view.addGestureRecognizer(tapOnViewGestureRecognizer)
@@ -122,5 +124,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         goToiTunesAction.backgroundColor = UIColor.white
         return [goToiTunesAction]
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 }

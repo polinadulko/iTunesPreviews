@@ -10,20 +10,14 @@ import UIKit
 
 class TrackTableViewCell: UITableViewCell {
     @IBOutlet var artworkImageView: UIImageView!
-    @IBOutlet var explicitImageView: UIImageView!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
-    @IBOutlet weak var playButton: PlayerButton!
+    
     var track: Track? {
         didSet {
             if let track = track {
                 artistNameLabel.text = track.artistName
                 trackNameLabel.text = track.trackName
-                if track.isExplicit {
-                    explicitImageView.isHidden = false
-                } else {
-                    explicitImageView.isHidden = true
-                }
                 if let artworkURL = track.artworkURL {
                     downloadAndSetImage(imageURL: artworkURL)
                 }
@@ -33,14 +27,10 @@ class TrackTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        explicitImageView.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-
-    @IBAction func playButtonTapped(_ sender: PlayerButton) {
     }
     
     func downloadAndSetImage(imageURL: URL) {

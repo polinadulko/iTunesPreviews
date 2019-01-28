@@ -64,7 +64,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRD-Bf-hAL">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Track" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRD-Bf-hAL">
                                                     <rect key="frame" x="113" y="32" width="43" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -83,13 +83,9 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isPauseButton" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="playButtonTapped:" destination="ngY-UA-jCj" eventType="touchUpInside" id="AIW-bg-JBH"/>
+                                                        <action selector="playerButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c3s-Lb-lFv"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Explicit" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-j7-DeQ">
-                                                    <rect key="frame" x="156" y="35" width="15" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="F2K-rg-hGQ" secondAttribute="trailing" constant="10" id="5do-dF-yg0"/>
@@ -107,8 +103,6 @@
                                         <connections>
                                             <outlet property="artistNameLabel" destination="UIk-GT-yj4" id="Fzt-DQ-bxv"/>
                                             <outlet property="artworkImageView" destination="Chc-uu-IoT" id="QsO-xf-b3H"/>
-                                            <outlet property="explicitImageView" destination="oMi-j7-DeQ" id="lfF-m1-9cw"/>
-                                            <outlet property="playButton" destination="F2K-rg-hGQ" id="Kfm-qT-LFY"/>
                                             <outlet property="trackNameLabel" destination="TRD-Bf-hAL" id="1Sl-Gf-WbL"/>
                                         </connections>
                                     </tableViewCell>
@@ -137,7 +131,4 @@
             <point key="canvasLocation" x="296.80000000000001" y="0.44977511244377816"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Explicit" width="40" height="40"/>
-    </resources>
 </document>
