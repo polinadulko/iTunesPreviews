@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var tracks = [Track]()
     let audioPlayer = AudioPlayer()
     var currentPlayerButton: PlayerButton?
+    let networkReachabilityManager = NetworkReachabilityManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +35,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func search(_ sender: UITextField) {
-        if let keywordForSearch = sender.text {
-            trackListDownloader.keyword = keywordForSearch
-            trackListDownloader.downloadListOfTracks()
+        //Checking of Internet connection
+        if networkReachabilityManager.isNetworkReachable() {
+            if let keywordForSearch = sender.text {
+                trackListDownloader.keyword = keywordForSearch
+                trackListDownloader.downloadListOfTracks()
+            }
         }
     }
     
@@ -45,6 +49,7 @@ class ViewController: UIViewController {
         guard let indexPath = tracksTableView.indexPathForRow(at: buttonPosition) else { return }
         guard let audioURL = tracks[indexPath.row].previewURL else { return }
         if currentPlayerButton != sender {
+            //Checking of Internet connection
             if let player = audioPlayer.player {
                 if player.isPlaying {
                     audioPlayer.stop()
@@ -53,16 +58,19 @@ class ViewController: UIViewController {
             if currentPlayerButton != nil {
                 currentPlayerButton!.isPauseButton = false
             }
-            sender.isPauseButton = true
-            currentPlayerButton = sender
-            audioPlayer.startPlaying(audioURL: audioURL, delegate: self)
+            if networkReachabilityManager.isNetworkReachable() {
+                sender.isPauseButton = true
+                currentPlayerButton = sender
+                audioPlayer.startPlaying(audioURL: audioURL, delegate: self)
+            }
         } else {
-            sender.isPauseButton = !sender.isPauseButton
             if let player = audioPlayer.player {
                 if player.isPlaying {
                     audioPlayer.pause()
+                    sender.isPauseButton = false
                 } else {
                     audioPlayer.continuePlaying()
+                    sender.isPauseButton = true
                 }
             }
         }

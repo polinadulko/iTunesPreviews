@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520D22BD21FF7E4F00AED58A /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520D22BC21FF7E4F00AED58A /* NetworkReachabilityManager.swift */; };
 		52CC5A9321FDE0330066622B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC5A9221FDE0330066622B /* AppDelegate.swift */; };
 		52CC5A9521FDE0330066622B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CC5A9421FDE0330066622B /* ViewController.swift */; };
 		52CC5A9821FDE0330066622B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CC5A9621FDE0330066622B /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520D22BC21FF7E4F00AED58A /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		52CC5A8F21FDE0330066622B /* iTunes Previews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTunes Previews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CC5A9221FDE0330066622B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52CC5A9421FDE0330066622B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			children = (
 				52CC5A9221FDE0330066622B /* AppDelegate.swift */,
 				52CC5A9421FDE0330066622B /* ViewController.swift */,
+				520D22BC21FF7E4F00AED58A /* NetworkReachabilityManager.swift */,
 				52CC5AAE21FE3B9B0066622B /* AudioPlayer.swift */,
 				52CC5AAC21FE24440066622B /* TrackListDownloader.swift */,
 				52CC5A9621FDE0330066622B /* Main.storyboard */,
@@ -157,6 +160,7 @@
 			files = (
 				52CC5AAB21FE078A0066622B /* TrackTableViewCell.swift in Sources */,
 				52CC5AA721FDEBB40066622B /* PlayerButton.swift in Sources */,
+				520D22BD21FF7E4F00AED58A /* NetworkReachabilityManager.swift in Sources */,
 				52CC5AAD21FE24440066622B /* TrackListDownloader.swift in Sources */,
 				52CC5A9521FDE0330066622B /* ViewController.swift in Sources */,
 				52CC5A9321FDE0330066622B /* AppDelegate.swift in Sources */,
