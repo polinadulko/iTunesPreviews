@@ -52,7 +52,7 @@ class TrackListDownloader {
                     isTrackExplicit = false
                 }
                 let artworkURLStr = object["artworkUrl100"] as? String
-                let viewURLStr = object["viewUrl"] as? String
+                let viewURLStr = object["trackViewUrl"] as? String
                 let previewURLStr = object["previewUrl"] as? String
                 let track = Track(artistName: artistName, trackName: trackName, isExplicit: isTrackExplicit, artworkURL: createURLFromString(str: artworkURLStr), viewURL: createURLFromString(str: viewURLStr), previewURL: createURLFromString(str: previewURLStr))
                 tracks.append(track)

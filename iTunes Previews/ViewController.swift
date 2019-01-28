@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         guard let networkReachabilityManager = networkReachabilityManager else { return }
         if networkReachabilityManager.isReachable {
             if let keywordForSearch = sender.text {
+                stopPlayingAudio()
                 trackListDownloader.keyword = keywordForSearch
                 trackListDownloader.downloadListOfTracks()
             }
@@ -97,13 +98,18 @@ class ViewController: UIViewController {
             }
         }
         if !isVisible {
-            if let player = audioPlayer.player {
-                if player.isPlaying {
-                    audioPlayer.stop()
-                }
-            }
-            currentPlayerButton.isPauseButton = false
+            stopPlayingAudio()
         }
+    }
+    
+    func stopPlayingAudio() {
+        guard let currentPlayerButton = currentPlayerButton else { return }
+        if let player = audioPlayer.player {
+            if player.isPlaying {
+                audioPlayer.stop()
+            }
+        }
+        currentPlayerButton.isPauseButton = false
     }
 }
 
@@ -142,14 +148,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let goToiTunesAction = UITableViewRowAction(style: .normal, title: "") { (action, indexPath) in
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let goToiTunesAction = UIContextualAction(style: .normal, title: "") { (action, view, handler) in
             let cell = tableView.cellForRow(at: indexPath) as! TrackTableViewCell
             guard let track = cell.track else {
                 return
             }
             if let viewURL = track.viewURL {
                 let canOpen = UIApplication.shared.canOpenURL(viewURL)
+                print(viewURL)
+                print(canOpen)
                 if canOpen {
                     UIApplication.shared.open(viewURL, options: [:], completionHandler: nil)
                 } else {
@@ -161,11 +169,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         goToiTunesAction.backgroundColor = UIColor.white
-        return [goToiTunesAction]
+        let configuration = UISwipeActionsConfiguration(actions: [goToiTunesAction])
+        return configuration
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let configuration = UISwipeActionsConfiguration(actions: [])
+        return configuration
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
