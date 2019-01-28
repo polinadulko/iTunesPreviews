@@ -75,6 +75,27 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    func stopPlayingForNonvisibleCells() {
+        guard let currentPlayerButton = currentPlayerButton else { return }
+        let playerButtonPosition = currentPlayerButton.convert(CGPoint.zero, to: tracksTableView)
+        guard let playingIndexPath = tracksTableView.indexPathForRow(at: playerButtonPosition) else { return }
+        guard let indexPathsForVisibleRows = tracksTableView.indexPathsForVisibleRows else { return }
+        var isVisible = false
+        for indexPath in indexPathsForVisibleRows {
+            if playingIndexPath == indexPath {
+                isVisible = true
+            }
+        }
+        if !isVisible {
+            if let player = audioPlayer.player {
+                if player.isPlaying {
+                    audioPlayer.stop()
+                }
+            }
+            currentPlayerButton.isPauseButton = false
+        }
+    }
 }
 
 //TrackListDownloader protocol
@@ -136,5 +157,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        stopPlayingForNonvisibleCells()
     }
 }
