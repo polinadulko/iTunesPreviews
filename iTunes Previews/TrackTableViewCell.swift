@@ -12,6 +12,9 @@ class TrackTableViewCell: UITableViewCell {
     @IBOutlet var artworkImageView: UIImageView!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var trackNameLabel: UILabel!
+    var originalCenter = CGPoint()
+    var minOffsetOfSwipe: CGFloat = 20
+    var shouldGoToItunes = false
     
     var track: Track? {
         didSet {
@@ -27,6 +30,9 @@ class TrackTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(cellSwipeHandler(sender:)))
+        panGestureRecognizer.delegate = self
+        self.addGestureRecognizer(panGestureRecognizer)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,5 +52,49 @@ class TrackTableViewCell: UITableViewCell {
             }
         }
         dataTask.resume()
+    }
+    
+    @objc func cellSwipeHandler(sender: UIPanGestureRecognizer) {
+        if sender.state == .began {
+            originalCenter = center
+        }
+        if sender.state == .changed {
+            let translation = sender.translation(in: self)
+            let newCenter = CGPoint(x: originalCenter.x + translation.x, y: originalCenter.y)
+            self.center = newCenter
+            if translation.x > minOffsetOfSwipe {
+                shouldGoToItunes = true
+            }
+        }
+        if sender.state == .ended {
+            if shouldGoToItunes {
+                openTrackInItunes()
+                shouldGoToItunes = false
+            }
+            let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
+            UIView.animate(withDuration: 0.2) {
+                self.frame = originalFrame
+            }
+        }
+    }
+    
+    func openTrackInItunes() {
+        guard let track = self.track else { return }
+        if let viewURL = track.viewURL {
+            let canOpen = UIApplication.shared.canOpenURL(viewURL)
+            if canOpen {
+                UIApplication.shared.open(viewURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
+            let translation = panGestureRecognizer.translation(in: self)
+            if abs(translation.x) > abs(translation.y) {
+                return true
+            }
+        }
+        return false
     }
 }

@@ -148,31 +148,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let goToiTunesAction = UIContextualAction(style: .normal, title: "") { (action, view, handler) in
-            let cell = tableView.cellForRow(at: indexPath) as! TrackTableViewCell
-            guard let track = cell.track else {
-                return
-            }
-            if let viewURL = track.viewURL {
-                let canOpen = UIApplication.shared.canOpenURL(viewURL)
-                print(viewURL)
-                print(canOpen)
-                if canOpen {
-                    UIApplication.shared.open(viewURL, options: [:], completionHandler: nil)
-                } else {
-                    let alert = UIAlertController(title: "Link to iTunes", message: "Can't open track in iTunes", preferredStyle: .alert)
-                    let okAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(okAlertAction)
-                    self.present(alert, animated: true)
-                }
-            }
-        }
-        goToiTunesAction.backgroundColor = UIColor.white
-        let configuration = UISwipeActionsConfiguration(actions: [goToiTunesAction])
-        return configuration
-    }
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let configuration = UISwipeActionsConfiguration(actions: [])
         return configuration
