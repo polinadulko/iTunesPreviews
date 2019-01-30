@@ -12,7 +12,6 @@ import Alamofire
 
 class ViewController: UIViewController {
     @IBOutlet var tracksTableView: UITableView!
-    let tracksTableViewCellHeight: CGFloat = 110
     @IBOutlet weak var searchTextField: UITextField!
     let trackListDownloader = TrackListDownloader()
     var tracks = [Track]()
@@ -41,11 +40,12 @@ class ViewController: UIViewController {
     @IBAction func search(_ sender: UITextField) {
         guard let networkReachabilityManager = networkReachabilityManager else { return }
         if networkReachabilityManager.isReachable {
-            if let keywordForSearch = sender.text {
+            if let keywordForSearch = sender.text?.applyingTransform(.toLatin, reverse: false) {
                 stopPlayingAudio()
                 trackListDownloader.keyword = keywordForSearch
                 trackListDownloader.downloadListOfTracks()
             }
+            self.currentPlayerButton = nil
         }
     }
     
@@ -99,6 +99,7 @@ class ViewController: UIViewController {
         }
         if !isVisible {
             stopPlayingAudio()
+            self.currentPlayerButton = nil
         }
     }
     
@@ -113,7 +114,7 @@ class ViewController: UIViewController {
     }
 }
 
-//TrackListDownloader protocol
+//MARK:- TrackListDownloader protocol
 extension ViewController: TrackListDownloaderDelegate {
     func downloadDidFinished(sender: TrackListDownloader) {
         self.tracks = sender.tracks
@@ -123,7 +124,7 @@ extension ViewController: TrackListDownloaderDelegate {
     }
 }
 
-//AVAudioPlayer protocol
+//MARK:- AVAudioPlayer protocol
 extension ViewController: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if let currentPlayerButton = currentPlayerButton {
@@ -132,14 +133,10 @@ extension ViewController: AVAudioPlayerDelegate {
     }
 }
 
-//TableView protocols
+//MARK:- TableView protocols
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tracks.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tracksTableViewCellHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -158,7 +155,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//TextField protocol
+//MARK:- TextField protocol
 extension ViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         clearSearchButton.isHidden = false
