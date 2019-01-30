@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     @IBAction func search(_ sender: UITextField) {
         guard let networkReachabilityManager = networkReachabilityManager else { return }
         if networkReachabilityManager.isReachable {
-            if let keywordForSearch = sender.text?.applyingTransform(.toLatin, reverse: false) {
+            if let keywordForSearch = sender.text?.replacingOccurrences(of: " ", with: "+").applyingTransform(.toLatin, reverse: false) {
                 stopPlayingAudio()
                 trackListDownloader.keyword = keywordForSearch
                 trackListDownloader.downloadListOfTracks()
@@ -58,7 +58,6 @@ class ViewController: UIViewController {
         guard let indexPath = tracksTableView.indexPathForRow(at: buttonPosition) else { return }
         guard let audioURL = tracks[indexPath.row].previewURL else { return }
         if currentPlayerButton != sender {
-            //Checking of Internet connection
             if let player = audioPlayer.player {
                 if player.isPlaying {
                     audioPlayer.stop()
